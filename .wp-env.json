@@ -1,0 +1,9 @@
+{
+  "$schema": "./schemas/wp-env.json",
+  "plugins": ["."],
+  "core": null,
+  "config": {
+    "WP_DEBUG_DISPLAY": true,
+    "WP_DEBUG": true
+  }
+}

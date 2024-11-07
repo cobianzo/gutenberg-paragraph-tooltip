@@ -1,0 +1,21 @@
+{
+  "name": "gutenberg-paragraph-tooltip",
+  "version": "1.0.0",
+  "description": "Adding option of tooltip for links inside a gutenberg paragraph",
+  "main": "src/index.js",
+  "scripts": {
+    "up": "wp-env start",
+    "test": "test"
+  },
+  "keywords": [
+    "tooltip",
+    "gutenberg",
+    "paragraph",
+    "link"
+  ],
+  "author": "@cobianzo",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/env": "^10.11.0"
+  }
+}
