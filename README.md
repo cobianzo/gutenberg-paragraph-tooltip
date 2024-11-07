@@ -15,9 +15,8 @@ npm run up
 
 1. git setup
 2. wp-env setup
-3. typescript setup
-4. wp-scripts setup and enqueue
-5. Linting setup js css and prettier in vscode
-6. Linging setup phpcs, phpcbf and phpstan
-7. Testing setup
-8. CI/CD
+3. typescript setup, wp-scripts setup and enqueue
+4. Linting setup js css and prettier in vscode
+5. Linging setup phpcs, phpcbf and phpstan
+6. Testing setup
+7. CI/CD
