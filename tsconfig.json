@@ -1,28 +1,24 @@
 {
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "outDir": "./build",
-    "target": "es5",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "jsx": "react-jsx",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@wordpress/*": ["node_modules/@wordpress/*"]
-    }
-  },
-  "include": ["src/**/*"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "build",
-    "**/*.spec.ts",
-    "/webpack.config.js",
-    "/*.js"
-  ]
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"outDir": "./dist",
+		"target": "es5",
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"jsx": "react-jsx",
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true
+	},
+	"include": ["src/**/*"],
+	"exclude": [
+		"node_modules",
+		"dist",
+		"**/*.spec.ts",
+		"/webpack.config.js",
+		"/*.js"
+	]
 }
