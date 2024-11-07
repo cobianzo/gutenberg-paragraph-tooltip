@@ -1,21 +1,46 @@
 <?php
+
 /**
  * Plugin Name: Gutenberg Tooltip
  * Description: Adds a tooltip field to links in the Gutenberg editor.
  * Version: 1.0
  * Author: @cobianzo
  * Author URI: https://github.com/cobianzo
+ *
+ *
+ * package @gutenberg-tooltip
  */
 
-// Enqueue el script de Gutenberg
-function enqueue_gutenberg_tooltip_script() {
-  $asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
+namespace GutenbergTooltip;
 
-  wp_enqueue_script(
-    'gutenberg-tooltip-script',
-    plugins_url( 'build/index.js', __FILE__ ),
-    $asset_file['dependencies'],
-    $asset_file['version']
-  );
+class Plugin {
+
+
+	/**
+	 * Call hooks
+	 *
+	 * @return void
+	 */
+	public static function init(): void {
+		add_action( 'enqueue_block_editor_assets', array( __CLASS__, 'enqueue_gutenberg_tooltip_script' ) );
+	}
+
+	/**
+	 * Enqueue script compiled in /build
+	 *
+	 * @return void
+	 */
+	public static function enqueue_gutenberg_tooltip_script(): void {
+		$asset_file = include plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
+
+		wp_enqueue_script(
+			'gutenberg-tooltip-script',
+			plugins_url( 'build/index.js', __FILE__ ),
+			$asset_file['dependencies'],
+			$asset_file['version'],
+			true
+		);
+	}
 }
-add_action( 'enqueue_block_editor_assets', 'enqueue_gutenberg_tooltip_script' );
+
+Plugin::init();

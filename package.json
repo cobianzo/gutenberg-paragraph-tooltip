@@ -9,7 +9,11 @@
 		"start": "wp-scripts start",
 		"build": "wp-scripts build",
 		"lint:js": "wp-scripts lint-js 'src/**/*.{ts,tsx}'",
+		"fix:js": "wp-scripts lint-js 'src/**/*.{ts,tsx}' --fix",
 		"lint:css": "wp-scripts lint-style",
+		"lint:php": "composer run phpcs -- --standard=WordPressVIPMinimum --extensions=php",
+		"lint": "npm run lint:js && npm run lint:css && npm run lint:php",
+		"fix:php": "composer run phpcbf -- --standard=WordPressVIPMinimum --extensions=php",
 		"test": "test"
 	},
 	"keywords": [

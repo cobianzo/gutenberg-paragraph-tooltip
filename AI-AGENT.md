@@ -18,4 +18,6 @@ I am working in a git repository.
 
 2. I want to setup my wordpress project for typescript, using @wordpress/scripts package for compiling my files, which will be in the /src folder, compiling into /build.
 
-> This will give you the `npx tsc --init` and `tsconfig.json` setup.
+> This will give you the `npx tsc --init` and `tsconfig.json` setup installation of the packages
+
+3. I want to setup the phpcs and phpcbf. First with command line. I want to install it with composer locally. This is a wordpress project, so I want to setup the wordpress VIP rules, and include the right script commands for composer, but include them also in npm

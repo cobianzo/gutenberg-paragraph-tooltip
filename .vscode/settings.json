@@ -9,6 +9,11 @@
 	],
 	"eslint.format.enable": true,
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
+		"source.fixAll.eslint": "explicit"
+	},
+	"files.trimTrailingWhitespace": false,
+	"editor.formatOnSave": false,
+	"[php]": {
+		"editor.formatOnSave": false
 	}
 }
