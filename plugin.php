@@ -22,7 +22,7 @@ class Plugin {
 	 * @return void
 	 */
 	public static function init(): void {
-		add_action( 'enqueue_block_editor_assets', array( __CLASS__, 'enqueue_gutenberg_tooltip_script' ) );
+		\add_action( 'enqueue_block_editor_assets', array( __CLASS__, 'enqueue_gutenberg_tooltip_script' ) );
 	}
 
 	/**

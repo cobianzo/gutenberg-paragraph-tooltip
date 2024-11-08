@@ -12,6 +12,9 @@
 		"source.fixAll.eslint": "explicit"
 	},
 	"files.trimTrailingWhitespace": false,
+	"[markdown]": {
+		"files.trimTrailingWhitespace": false
+	},
 	"editor.formatOnSave": false,
 	"[php]": {
 		"editor.formatOnSave": false

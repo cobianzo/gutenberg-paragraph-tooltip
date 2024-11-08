@@ -1,10 +1,12 @@
 # Desciption of my project to ask more changes
 
 I am working in a Wordpress plugin development using a local package of `wp-env`. My `package.json` runs the env using
-
 ```
 "scripts": {
     "up": "wp-env start",
+    "down": "wp-env stop",
+    "start": "wp-scripts start",
+    "build": "wp-scripts build",
 ```
 
 I have setup typescript as well.

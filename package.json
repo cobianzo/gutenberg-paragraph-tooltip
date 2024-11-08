@@ -14,7 +14,7 @@
 		"lint:php": "composer run phpcs -- --standard=WordPressVIPMinimum --extensions=php",
 		"lint": "npm run lint:js && npm run lint:css && npm run lint:php",
 		"fix:php": "composer run phpcbf -- --standard=WordPressVIPMinimum --extensions=php",
-		"test": "test"
+		"test:php": "wp-env run tests-cli --env-cwd=wp-content/plugins/gutenberg-paragraph-tooltip ./vendor/bin/phpunit"
 	},
 	"keywords": [
 		"tooltip",

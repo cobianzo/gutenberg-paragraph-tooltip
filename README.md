@@ -1,13 +1,33 @@
 # Development notes
 
-Open Docker in your computer and:
+Open Docker and sequence to start working:
 
 ```
-npm run up
+npm install; npm run up; npm run start
 ```
 
 -   http://localhost:8888/wp-admin/
 -   Use user: admin / pw: password to login
+
+## Run commands in the env
+
+In development instance:
+`npx wp-env run cli wp plugin list`
+
+In test instance:
+`npx wp-env run tests-cli wp shell`
+
+## Linting
+
+`npm run lint`
+
+It will lint all : js, css, php with phpcs and phpstan.
+There are individual commands for each type of linting, check `package.json`.
+
+# Testing
+
+> npx wp-env run tests-cli --env-cwd=wp-content/plugins/gutenberg-paragraph-tooltip phpunit
+❯ npm run test:php
 
 # DEVELOPMENT STEPS:
 

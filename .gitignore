@@ -15,3 +15,5 @@ wp-content/
 /artifacts/
 /tests/e2e/__snapshots__
 /build
+.phpunit.result.cache
+phpunit.xml
