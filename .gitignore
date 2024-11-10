@@ -17,3 +17,4 @@ wp-content/
 /build
 .phpunit.result.cache
 phpunit.xml
+/tests/_wordpress

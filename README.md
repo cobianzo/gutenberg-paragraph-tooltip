@@ -26,6 +26,30 @@ There are individual commands for each type of linting, check `package.json`.
 
 # Testing
 
+## @TODO: Testing with WP Browser
+
+It is not yet installed. It should be installed with
+❯ composer require --dev lucatume/wp-browser
+
+Before you start testing you need to edit:
+`tests/.env`
+and probably the _bootstrap.php for every suite to activate the plugin.
+
+You'll need to connect it to the wp-env source code and the mysql test database.
+
+```
+composer install
+vendor/bin/codecept init wpbrowser
+```
+
+Execute the integration tests (we don't use `npm run test:php`)
+
+```
+vendor/bin/codecept run Integration
+```
+
+## Testing without WPBrowser
+
 > npx wp-env run tests-cli --env-cwd=wp-content/plugins/gutenberg-paragraph-tooltip phpunit
 ❯ npm run test:php
 

@@ -14,7 +14,7 @@
 		"phpcs": "./vendor/bin/phpcs --standard=.phpcs.xml.dist",
 		"format": "./vendor/bin/phpcbf --standard=.phpcs.xml.dist --report-summary --report-source",
 		"lint": " composer phpcs; echo \">>>>>>>>>>phpcs finished ===== \"; composer phpstan",
-    "test": "./vendor/bin/phpunit"
+    "test": "npx wp-env run tests-cli --env-cwd=wp-content/plugins/gutenberg-paragraph-tooltip ./vendor/bin/phpunit"
 	},
 	"config": {
 		"allow-plugins": {
