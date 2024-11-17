@@ -40,6 +40,13 @@ class Plugin {
 			$asset_file['version'],
 			true
 		);
+
+        wp_enqueue_style(
+            'gutenberg-tooltip-style',
+            plugins_url( 'build/style-index.css', __FILE__ ),
+            array(),
+            $asset_file['version']
+        );
 	}
 }
 

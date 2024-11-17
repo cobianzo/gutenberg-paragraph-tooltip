@@ -3,7 +3,8 @@
 Open Docker and sequence to start working:
 
 ```
-npm install; npm run up; npm run start
+npm install; composer install;
+npm run up; npm run start
 ```
 
 -   http://localhost:8888/wp-admin/
@@ -50,7 +51,7 @@ vendor/bin/codecept run Integration
 
 ## Testing without WPBrowser
 
-> npx wp-env run tests-cli --env-cwd=wp-content/plugins/gutenberg-paragraph-tooltip phpunit
+> npx wp-env run tests-cli --env-cwd=wp-content/plugins/another-wp-env-phpunit phpunit
 ❯ npm run test:php
 
 # DEVELOPMENT STEPS:
