@@ -1,7 +1,8 @@
-.components-popover {
-  border: 3px solid red;
+#inspector-input-control-tooltip,
+label[for="inspector-input-control-tooltip"] {
+  margin: 0 1.5rem;
 }
 
-button[data-listenertooltip="true"] {
-  border: 10px solid red;
+#inspector-input-control-tooltip {
+  margin-bottom: 15px;
 }

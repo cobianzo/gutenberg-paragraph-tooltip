@@ -1,3 +1,16 @@
+# TODO
+
+
+- Add e2e testing
+- Add label on top of input for tooltip
+- Remove the add listener to the pencil button and replace it with a mutation observer,
+which should be enough
+- When the tooltip
+- make the restriction of BLOCKS work (now it applies to all blocks)
+- fix bug, closing and opening Advanced panel
+- fix phpunit test
+
+
 # Development notes
 
 Open Docker and sequence to start working:
@@ -51,7 +64,7 @@ vendor/bin/codecept run Integration
 
 ## Testing without WPBrowser
 
-> npx wp-env run tests-cli --env-cwd=wp-content/plugins/another-wp-env-phpunit phpunit
+> npx wp-env run tests-cli --env-cwd=wp-content/plugins/wordpress-paragraph-tooltip phpunit
 ❯ npm run test:php
 
 # DEVELOPMENT STEPS:

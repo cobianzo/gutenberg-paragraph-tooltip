@@ -25,14 +25,14 @@ class test_plugin extends TestCase {
 	function test_plugin_script_enqueued() {
 
 		// log in as admin
-		wp_set_current_user(1);
+		wp_set_current_user( 1 );
 
 		// create a new page
 		$page_id = wp_insert_post( array(
-			'post_title' => 'Test page',
-			'post_type' => 'page',
+			'post_title'   => 'Test page',
+			'post_type'    => 'page',
 			'post_content' => 'This is a test page',
-			'post_status' => 'publish'
+			'post_status'  => 'publish',
 		));
 
 		// check that the page was created

@@ -1,23 +1,35 @@
+// WordPress dependencies
 import { select, dispatch } from '@wordpress/data';
+import { __ } from '@wordpress/i18n';
 
-// Example usage
-// addAttributeToCurrentLink('https://example.com', 'Link Text');
+// Internal dependencies
+import { type NullableHTMLElement, BLOCKS, newInputId, ATTRIBUTE } from './index';
 
-export const findCurrentLink = ( href: string, linkText: string ) => {
+// define consts
+const cancelBtnSelector = '.block-editor-link-control__search-actions button';
+
+/**
+ * Find the link, so we can edit it in the selected block.
+ *
+ * @param href     the url of the link that we are searching
+ * @param linkText the text inside of <a></a>
+ * @return array with [ link: HTMLElement, doc: Document, clientId: string ]
+ */
+export const findCurrentLink = ( href: string, linkText: string )
+	: [ HTMLElement | null, Document | null, string | null ] => {
 	const selectedBlockClientId = select( 'core/block-editor' ).getSelectedBlockClientId();
 	let block = null;
-
 	let theLink = null;
 	let theDom = null;
 
 	if ( selectedBlockClientId ) {
 		block = select( 'core/block-editor' ).getBlock( selectedBlockClientId );
 	} else {
-		console.log( 'No block selected to modify link attribute' );
-		return;
+		// console.log( 'No block selected to modify link attribute' );
+		return [ null, null, null ];
 	}
 
-	if ( block && block.name === 'core/paragraph' ) {
+	if ( block && BLOCKS.includes( block.name ) ) {
 		const { attributes } = block;
 		const content = attributes.content;
 		const parser = new DOMParser();
@@ -25,26 +37,36 @@ export const findCurrentLink = ( href: string, linkText: string ) => {
 		const links = theDom.querySelectorAll( 'a' );
 
 		links.forEach( ( link ) => {
-			if ( link.href.replace( /\/$/, '' ) === href && link.textContent === linkText ) {
-				console.log( '>>>>> FOUND LINK with the content and href' );
+			if ( link.href.replace( /\/$/, '' ) === href.replace( /\/$/, '' ) &&
+				link.textContent === linkText ) {
+				// console.log( '>>>>> FOUND LINK with the content and href' );
 				theLink = link;
 			}
 		} );
 	}
+
 	return [ theLink, theDom, selectedBlockClientId ];
 };
 
-//
-export const addAttributeToCurrentLink = ( tootipValue: string, href: string, linkText: string ) => {
+/**
+ * Adds the title attribute to the selected link in the current block
+ * @param tootipValue the value for the tooltip
+ * @param href
+ * @param linkText
+ */
+export const addAttributeToCurrentLink = ( tootipValue: string, href: string, linkText: string ) : void => {
 	// Get the currently selected block
 	const [ link, doc, clientId ] = findCurrentLink( href, linkText );
-
 	if ( ! link || ! doc ) {
-		console.error( 'nada que updatear' );
+		// console.error( 'nada que updatear' );
 		return;
 	}
 
-	link.setAttribute( 'title', tootipValue );
+	if ( tootipValue === '' ) {
+		link.removeAttribute( ATTRIBUTE );
+	} else {
+		link.setAttribute( ATTRIBUTE, tootipValue );
+	}
 
 	// Serializar el contenido actualizado de vuelta a HTML
 	const serializer = new XMLSerializer();
@@ -57,4 +79,42 @@ export const addAttributeToCurrentLink = ( tootipValue: string, href: string, li
 
 	// Update the block content with the new HTML
 	dispatch( 'core/block-editor' ).updateBlockAttributes( clientId, { content: validContent } );
+};
+
+export const createTooltipInputElement = ( container: NullableHTMLElement, saveButton: NullableHTMLElement )
+	: HTMLInputElement => {
+	const tooltipInput: HTMLInputElement = document.createElement( 'input' );
+	tooltipInput.type = 'text';
+	tooltipInput.placeholder = 'Enter tooltip text';
+	tooltipInput.autocomplete = 'off';
+	tooltipInput.id = newInputId;
+	tooltipInput.className = 'tooltip-input';
+
+	tooltipInput.addEventListener( 'input', () => {
+		// trick to trigger the Save button activation
+		saveButton?.setAttribute( 'aria-disabled', 'false' );
+
+		saveButton?.addEventListener( 'click', () => {
+			setTimeout( () => {
+				// hacky solution: if, afteer clicking 'Sace', the cancel button is still there after 500 secs,
+				// it means that the Save btn didnt close the popup, (thi shappens when there are no changes in
+				// any other field) so we need to close the popup with 'Cancel' click
+				const cancelBtn: HTMLButtonElement | null | undefined = container?.querySelector( cancelBtnSelector );
+				if ( cancelBtn ) {
+					cancelBtn.click();
+				}
+			}, 500 );
+		} );
+	} );
+
+	return tooltipInput;
+};
+
+export const createTooltipLabelElement = () => {
+	const tooltipLabel: HTMLLabelElement = document.createElement( 'label' );
+	tooltipLabel.textContent = __( 'Special tooltip', 'gutenberg-tooltip' );
+	tooltipLabel.setAttribute( 'for', newInputId );
+	tooltipLabel.className = 'components-base-control__label';
+
+	return tooltipLabel;
 };
