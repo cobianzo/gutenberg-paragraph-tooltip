@@ -1,3 +1,15 @@
+# TODO
+
+- make the restriction of BLOCKS work (now it applies to all blocks. Test it in other blocks like blockquotes
+- fix phpunit test
+- Make it multilingual compatible (test it at least)
+- Make more e2e testings.
+
+## bugs:
+
+- making only a change in a tooltip does not activate the Save button on the page editor.
+
+
 # Development notes
 
 Open Docker and sequence to start working:
@@ -9,6 +21,9 @@ npm run up; npm run start
 
 -   http://localhost:8888/wp-admin/
 -   Use user: admin / pw: password to login
+
+If you want to make changes I suggest you setup the playwright environment and run `npm run test:js:watch`
+to monitorize if you break something.
 
 ## Run commands in the env
 
@@ -25,7 +40,7 @@ In test instance:
 It will lint all : js, css, php with phpcs and phpstan.
 There are individual commands for each type of linting, check `package.json`.
 
-# Testing
+# Testing PHP
 
 ## @TODO: Testing with WP Browser
 
@@ -51,17 +66,17 @@ vendor/bin/codecept run Integration
 
 ## Testing without WPBrowser
 
-> npx wp-env run tests-cli --env-cwd=wp-content/plugins/another-wp-env-phpunit phpunit
+> npx wp-env run tests-cli --env-cwd=wp-content/plugins/wordpress-paragraph-tooltip phpunit
 ❯ npm run test:php
 
-# DEVELOPMENT STEPS:
+# Testing E2E JS
 
-## Basic boilerplate, corresponding to git commits
+In VSCode, use the extension for Playwright (with the icon of the laboratory on the left),
+or use `npm run test:js -- --ui`
 
-1. git setup
-2. wp-env setup
-3. typescript setup, wp-scripts setup and enqueue
-4. Linting setup js, stylelint: command line and vscode
-5. Linging setup phpcs, phpcbf and phpstan
-6. Testing setup
-7. CI/CD (husky?)
+Or:
+```
+npm run test:js
+npm run test:js:watch
+npm run test:js:report
+```

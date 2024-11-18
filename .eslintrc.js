@@ -6,7 +6,7 @@ module.exports = {
 	parser: '@typescript-eslint/parser',
 	plugins: [ '@typescript-eslint' ],
 	rules: {
-		'max-len': [ 'error', { code: 120 } ], // Permitir hasta 120 caracteres
+		'max-len': [ 'error', { code: 150 } ], // Permitir hasta 120 caracteres
 		'import/no-unresolved': [
 			'error',
 			{

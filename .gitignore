@@ -18,3 +18,4 @@ wp-content/
 .phpunit.result.cache
 phpunit.xml
 /tests/_wordpress
+tests-examples/demo-todo-app.spec.ts

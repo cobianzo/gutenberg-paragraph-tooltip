@@ -16,13 +16,19 @@ namespace GutenbergTooltip;
 class Plugin {
 
 
+
 	/**
 	 * Call hooks
 	 *
 	 * @return void
 	 */
 	public static function init(): void {
-		\add_action( 'enqueue_block_editor_assets', array( __CLASS__, 'enqueue_gutenberg_tooltip_script' ) );
+
+		// editor (backend)
+		add_action( 'enqueue_block_editor_assets', array( __CLASS__, 'enqueue_gutenberg_tooltip_script' ) );
+
+		// frontend
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_additional_block_styles' ) );
 	}
 
 	/**
@@ -41,12 +47,28 @@ class Plugin {
 			true
 		);
 
-        wp_enqueue_style(
-            'gutenberg-tooltip-style',
-            plugins_url( 'build/style-index.css', __FILE__ ),
-            array(),
-            $asset_file['version']
-        );
+		wp_enqueue_style(
+			'gutenberg-tooltip-style',
+			plugins_url( 'build/style-index.css', __FILE__ ),
+			array(),
+			$asset_file['version']
+		);
+	}
+
+	/**
+	 * Style for the frontend.
+	 *
+	 * @return void
+	 */
+	public static function enqueue_additional_block_styles(): void {
+		$asset_file = include plugin_dir_path( __FILE__ ) . 'build/front-style.asset.php';
+
+		wp_enqueue_style(
+			'gutenberg-tooltip-frontend-style',
+			plugins_url( 'build/front-style.css', __FILE__ ),
+			array(),
+			$asset_file['version']
+		);
 	}
 }
 

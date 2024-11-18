@@ -3,6 +3,7 @@
     "target": "es5",
     "module": "commonjs",
     "jsx": "preserve",
+    "downlevelIteration": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
