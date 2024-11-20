@@ -45,4 +45,16 @@ Now I want to integrate WPBrowser. I have included the library and run the comma
 I want you to help me to build a simple test that connects to the admin of WP, creates a new page, and asserts that that page has loaded the script that my plugin has enqueued with
 `wp_enqueue_script( 'gutenberg-tooltip-script', plugins_url( 'build/index.js', __FILE__ ), ... )`
 
-What kind of test would be this one? Integration test?
+# Playwright
+
+## How to Setup
+Now, help me to set up a test suite with playwright:
+
+npm init playwright@latest
+npx playwright install
+npm install @wordpress/e2e-test-utils @wordpress/scripts --save-dev
+
+## Explaining the setup
+
+I am using playwright in an enviornemt of wp-env of the development of a plugin in Wordpress. I have the VSCode extension for Playwright and I have created my first test. It works ok, I can use the extension to run it, or run it from the terminal with `npx playwright test e2e/example.spec.ts --headed --ui` `playwright test --watch`, `playwright show-report`.
+I am exploring the code of the plugin Gutenberg to know more about possible tests and instructions that I can carry on.

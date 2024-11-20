@@ -38,7 +38,7 @@ In test instance:
 It will lint all : js, css, php with phpcs and phpstan.
 There are individual commands for each type of linting, check `package.json`.
 
-# Testing
+# Testing PHP
 
 ## @TODO: Testing with WP Browser
 
@@ -66,6 +66,16 @@ vendor/bin/codecept run Integration
 
 > npx wp-env run tests-cli --env-cwd=wp-content/plugins/wordpress-paragraph-tooltip phpunit
 ❯ npm run test:php
+
+# Testing E2E JS
+
+In VSCode, use the extension for Playwright (with the icon of the laboratory on the left)
+Or: 
+```
+npm run test:js
+npm run test:js:watch
+npm run test:js:report
+```
 
 # DEVELOPMENT STEPS:
 
