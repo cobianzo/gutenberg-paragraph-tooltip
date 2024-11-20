@@ -1,8 +1,8 @@
 :root {
 	--tooltip-border-color: rgba(39, 39, 39, 1);
 	--tooltip-bg-color: rgba(39, 39, 39, 1);
-  --tooltip-text-color: #fff;
-  --tooltip-fontfamily: Arial;
+	--tooltip-text-color: #fff;
+	--tooltip-fontfamily: arial;
 }
 
 [data-tooltip] {
@@ -27,8 +27,8 @@
 	border-radius: 4px;
 	padding: 10px;
 	color: var(--tooltip-text-color);
-  font-style: normal;
-  font-family: var(--tooltip-fontfamily);
+	font-style: normal;
+	font-family: var(--tooltip-fontfamily);
 	z-index: 1;
 }
 
@@ -40,7 +40,7 @@
 	width: 0;
 	height: 0;
 	bottom: calc(100% + 6px);
-	margin-left: - 3px;
+	margin-left: -3px;
 	border: 1px solid var(--tooltip-border-color);
 	border-color: var(--tooltip-border-color) transparent transparent transparent;
 	border-width: 4px 6px 0;

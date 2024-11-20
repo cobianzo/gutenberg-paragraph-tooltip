@@ -1,3 +1,12 @@
+# GB CSS Plugin
+
+This is the source code for the WordPress plugin 'gb-css-plugin'. The distribution file will be
+placed in the branch 'distribution-zip' of this repository.
+
+This plugin consists in a simple functionality that includes an extra option when editing a link
+ within the block editor: nice CSS tooltips.
+
+
 # TODO
 
 - make the restriction of BLOCKS work (now it applies to all blocks. Test it in other blocks like blockquotes

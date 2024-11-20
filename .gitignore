@@ -2,6 +2,7 @@
 *.pot
 *.po
 *.mo
+.DS_Store
 vendor/
 node_modules/
 .env
@@ -11,10 +12,8 @@ wp-content/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-/build/*
 /artifacts/
 /tests/e2e/__snapshots__
-/build
 .phpunit.result.cache
 phpunit.xml
 /tests/_wordpress

@@ -17,8 +17,10 @@ const cancelBtnSelector = '.block-editor-link-control__search-actions button';
  *
  * @return {HTMLElement | null} The container of the popup, or null if it doesn't exist.
  */
-export const findPopupContainer = () : NullableHTMLElement => {
-	const container = document.querySelector( `${ popupContainerSelector } ${ advanceFieldsetSelector }` );
+export const findPopupContainer = (): NullableHTMLElement => {
+	const container = document.querySelector(
+		`${ popupContainerSelector } ${ advanceFieldsetSelector }`
+	);
 	if ( container ) {
 		return container.closest( popupContainerSelector ) as HTMLElement;
 	}
@@ -32,9 +34,12 @@ export const findPopupContainer = () : NullableHTMLElement => {
  * @param {string} linkText - the text inside of <a></a>
  * @return {[HTMLElement|null, Document|null, string|null]} - an array with [ link: HTMLElement, doc: Document, clientId: string ]
  */
-export const findCurrentLink = ( href: string, linkText: string )
-	: [ HTMLElement | null, Document | null, string | null ] => {
-	const selectedBlockClientId = select( 'core/block-editor' ).getSelectedBlockClientId();
+export const findCurrentLink = (
+	href: string,
+	linkText: string
+): [HTMLElement | null, Document | null, string | null] => {
+	const selectedBlockClientId =
+		select( 'core/block-editor' ).getSelectedBlockClientId();
 	let block = null;
 	let theLink = null;
 	let theDom = null;
@@ -53,8 +58,10 @@ export const findCurrentLink = ( href: string, linkText: string )
 		const links = theDom.querySelectorAll( 'a' );
 
 		links.forEach( ( link ) => {
-			if ( link.href.replace( /\/$/, '' ) === href.replace( /\/$/, '' ) &&
-				link.textContent === linkText ) {
+			if (
+				link.href.replace( /\/$/, '' ) === href.replace( /\/$/, '' ) &&
+				link.textContent === linkText
+			) {
 				theLink = link;
 			}
 		} );
@@ -69,7 +76,11 @@ export const findCurrentLink = ( href: string, linkText: string )
  * @param href
  * @param linkText
  */
-export const addAttributeToCurrentLink = ( tootipValue: string, href: string, linkText: string ) : void => {
+export const addAttributeToCurrentLink = (
+	tootipValue: string,
+	href: string,
+	linkText: string
+): void => {
 	// Get the currently selected block
 	const [ link, doc, clientId ] = findCurrentLink( href, linkText );
 	if ( ! link || ! doc ) {
@@ -93,11 +104,15 @@ export const addAttributeToCurrentLink = ( tootipValue: string, href: string, li
 		.trim(); // Eliminar espacios innecesarios
 
 	// Update the block content with the new HTML
-	dispatch( 'core/block-editor' ).updateBlockAttributes( clientId, { content: validContent } );
+	dispatch( 'core/block-editor' ).updateBlockAttributes( clientId, {
+		content: validContent,
+	} );
 };
 
-export const createTooltipInputElement = ( container: NullableHTMLElement, saveButton: NullableHTMLElement )
-	: HTMLInputElement => {
+export const createTooltipInputElement = (
+	container: NullableHTMLElement,
+	saveButton: NullableHTMLElement
+): HTMLInputElement => {
 	const tooltipInput: HTMLInputElement = document.createElement( 'input' );
 	tooltipInput.type = 'text';
 	tooltipInput.placeholder = 'Enter tooltip text';
@@ -114,7 +129,8 @@ export const createTooltipInputElement = ( container: NullableHTMLElement, saveB
 				// hacky solution: if, afteer clicking 'Sace', the cancel button is still there after 500 secs,
 				// it means that the Save btn didnt close the popup, (thi shappens when there are no changes in
 				// any other field) so we need to close the popup with 'Cancel' click
-				const cancelBtn: HTMLButtonElement | null | undefined = container?.querySelector( cancelBtnSelector );
+				const cancelBtn: HTMLButtonElement | null | undefined =
+					container?.querySelector( cancelBtnSelector );
 				if ( cancelBtn ) {
 					cancelBtn.click();
 				}

@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name: Gutenberg Tooltip
+ * Plugin Name: GB CSS Tooltip
  * Description: Adds a tooltip field to links in the Gutenberg editor.
- * Version: 1.0
+ * Version: 1.0.1
  * Author: @cobianzo
  * Author URI: https://github.com/cobianzo
  *
