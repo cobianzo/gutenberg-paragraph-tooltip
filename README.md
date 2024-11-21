@@ -9,10 +9,12 @@ This plugin consists in a simple functionality that includes an extra option whe
 
 # TODO
 
+- Install `dist-archive` package and create distribution process through WP CLI instead of deploy.sh
 - make the restriction of BLOCKS work (now it applies to all blocks. Test it in other blocks like blockquotes
 - fix phpunit test
 - Make it multilingual compatible (test it at least)
 - Make more e2e testings.
+- Nice to have: Make a mobile friendly alternative
 
 ## bugs:
 
@@ -28,11 +30,20 @@ npm install; composer install;
 npm run up; npm run start
 ```
 
+you might also want to run a quick test (with the wp-env instance up):
+
+```
+npx playwright install
+npm run test:js
+```
+
+Visit the site:
+
 -   http://localhost:8888/wp-admin/
 -   Use user: admin / pw: password to login
 
 If you want to make changes I suggest you setup the playwright environment and run `npm run test:js:watch`
-to monitorize if you break something.
+to monitorize if you break something (or watch it with the UI or the VSCode Playwright plugin)
 
 ## Run commands in the env
 
@@ -80,10 +91,12 @@ vendor/bin/codecept run Integration
 
 # Testing E2E JS
 
-In VSCode, use the extension for Playwright (with the icon of the laboratory on the left),
-or use `npm run test:js -- --ui`
+`npx playwright install`
 
-Or:
+In VSCode, use the extension for Playwright (with the icon of the laboratory on the left),
+ or use `npm run test:js -- --ui`
+
+Or from command line use any of these:
 ```
 npm run test:js
 npm run test:js:watch

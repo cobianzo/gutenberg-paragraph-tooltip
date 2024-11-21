@@ -5,8 +5,9 @@ BRANCH_DISTRIBUTION="distribution"
 BRANCH_MAIN="main"
 BRANCH_DISTRIBUTION_ZIP="distribution-zip"
 ZIP_FILE="gb-css-tooltip.zip"
-EXCLUDE_FILES=(".wp-env.json" "vendor" "node_modules") # Añade aquí los archivos o carpetas que quieres excluir
-
+# Añade aquí los archivos o carpetas que quieres excluir. We just need plugin.php, readme.txt and build/ folder
+# When using WP CLI dist-archive, we'll put these ones in the .distignore file
+EXCLUDE_FILES=("README.md" "composer.json" "composer.lock" "deploy.sh" "e2e" "package-lock.json" "package.json" "phpstan.neon" "phpunit.xml.dist" "playwright.config.ts" "schemas" "src" "tests" "tsconfig.json")
 # Paso 1: Eliminar la rama 'distribution', si existe
 git branch -D $BRANCH_DISTRIBUTION 2>/dev/null
 
@@ -17,13 +18,11 @@ git checkout -b $BRANCH_DISTRIBUTION $BRANCH_MAIN
 npm run build
 
 # Paso 4: Borrar archivos especificados en el array EXCLUDE_FILES
-for file in "${EXCLUDE_FILES[@]}"; do
-    rm -rf $file
-done
+for file in "${EXCLUDE_FILES[@]}"; do rm -rf "$file"; done
 
 # Paso 5: Hacer commit de todos los cambios y hacer push
 git add .
-git commit -m "Preparing distribution branch"
+git commit -m "Preparing distribution branch on $(date +"%Y-%m-%d %H:%M")"
 git push -f origin $BRANCH_DISTRIBUTION
 
 # Paso 6: Borrar la rama 'distribution-zip' si existe
@@ -36,12 +35,12 @@ git checkout -b $BRANCH_DISTRIBUTION_ZIP $BRANCH_DISTRIBUTION
 zip -r $ZIP_FILE .
 
 # Paso 9: Eliminar cualquier archivo que no sea el .zip ni .git ni .gitignore
-find . -type f ! -name "$ZIP_FILE" ! -name ".gitignore" -delete
-find . -type d ! -name "." ! -name ".git" -exec rm -rf {} +
+find . -type f ! -name "*.zip" ! -path "./.git/*" ! -name "readme.txt" -exec rm -f {} +
+echo "Archivos eliminados excepto .zip, .git y .gitignore."
 
 # Paso 10: Hacer commit y push de todos los cambios
 git add .
-git commit -m "Adding distribution zip"
+git commit -m "Adding distribution zip on $(date +"%Y-%m-%d %H:%M")"
 git push -f origin $BRANCH_DISTRIBUTION_ZIP
 
 # Volver a la rama main

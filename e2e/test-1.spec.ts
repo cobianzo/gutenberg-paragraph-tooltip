@@ -42,6 +42,15 @@ const commonCreateLinkWithTooltip = async ( { page, editor }, params = {
 
 	page.getByLabel( 'Edit link', { exact: true } ).click();
 
+	// Now two options, either the Advanced panel is open or it is closed.
+	// If closed, we have to open it
+	const advancedTitle = page.getByLabel( 'Editor content' ).getByRole( 'button', { name: 'Advanced' } );
+	const advancedTitleAttr = await advancedTitle.getAttribute( 'aria-expanded' );
+	console.log( 'aria-expanded', advancedTitleAttr );
+	if ( await advancedTitle.isVisible() && advancedTitleAttr === 'false' ) {
+		await advancedTitle.click();
+	}
+
 	await page.waitForTimeout( 1000 );
 
 	// this input is added by the plugin
@@ -83,6 +92,17 @@ test.describe( 'Creating the link and tooltip and ensure it all works fine in th
 		await admin.visitAdminPage( '/post.php', `post=${ pageId }&action=edit` );
 
 		await expect( page ).toHaveTitle( /Edit Page/ );
+
+		// Two options: the modal tutorial triggers or not.
+		// skip the tutorial if it promopts (@TODO: find the dedicated method for it, surely it exists)
+		const closeButton = page.getByLabel( 'Close', { exact: true } );
+		console.log( 'closeButton', closeButton );
+		// Localiza el elemento
+		if ( await closeButton.count() > 0 && await closeButton.isVisible() ) {
+			await closeButton.click();
+		} else {
+			console.log( 'El botón "Close" no está presente o visible.' );
+		}
 	} );
 
 	test( `Test 1: Creating the link and the tooltip, ensuring the attribute data-tooltip is there `, async ( {
