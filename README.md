@@ -4,22 +4,33 @@ This is the source code for the WordPress plugin 'gb-css-plugin'. The distributi
 placed in the branch 'distribution-zip' of this repository.
 
 This plugin consists in a simple functionality that includes an extra option when editing a link
- within the block editor: nice CSS tooltips.
+within the block editor: nice CSS tooltips.
 
+# Distribution
+
+Option 1:
+
+run `sh deploy.sh` and check the repo: https://github.com/cobianzo/gutenberg-paragraph-tooltip/tree/distribution-zip
+
+Option 2 (WIP, still doesnt work in wp-env):
+
+~~Install the package wp cli for distribution:~~
+
+~~❯ npm run wp package install wp-cli/dist-archive-command~~
+~~❯ npm run wp dist-archive~~
 
 # TODO
 
-- Install `dist-archive` package and create distribution process through WP CLI instead of deploy.sh
-- make the restriction of BLOCKS work (now it applies to all blocks. Test it in other blocks like blockquotes
-- fix phpunit test
-- Make it multilingual compatible (test it at least)
-- Make more e2e testings.
-- Nice to have: Make a mobile friendly alternative
+-   Install `dist-archive` package and create distribution process through WP CLI instead of deploy.sh
+-   make the restriction of BLOCKS work (now it applies to all blocks. Test it in other blocks like blockquotes
+-   fix phpunit test
+-   Make it multilingual compatible (test it at least)
+-   Make more e2e testings.
+-   Nice to have: Make a mobile friendly alternative for tooltip onclick instead of hover
 
-## bugs:
+## known bugs:
 
-- making only a change in a tooltip does not activate the Save button on the page editor.
-
+-   noone at the moment
 
 # Development notes
 
@@ -48,7 +59,11 @@ to monitorize if you break something (or watch it with the UI or the VSCode Play
 ## Run commands in the env
 
 In development instance:
-`npx wp-env run cli wp plugin list`
+`npm run wp plugin list`
+
+If you want to execute any terminal in the docker container:
+
+`npx wp-env run cli bash`
 
 In test instance:
 `npx wp-env run tests-cli wp shell`
@@ -69,7 +84,7 @@ It is not yet installed. It should be installed with
 
 Before you start testing you need to edit:
 `tests/.env`
-and probably the _bootstrap.php for every suite to activate the plugin.
+and probably the \_bootstrap.php for every suite to activate the plugin.
 
 You'll need to connect it to the wp-env source code and the mysql test database.
 
@@ -87,16 +102,17 @@ vendor/bin/codecept run Integration
 ## Testing without WPBrowser
 
 > npx wp-env run tests-cli --env-cwd=wp-content/plugins/wordpress-paragraph-tooltip phpunit
-❯ npm run test:php
+> ❯ npm run test:php
 
 # Testing E2E JS
 
 `npx playwright install`
 
 In VSCode, use the extension for Playwright (with the icon of the laboratory on the left),
- or use `npm run test:js -- --ui`
+or use `npm run test:js -- --ui`
 
 Or from command line use any of these:
+
 ```
 npm run test:js
 npm run test:js:watch

@@ -3,10 +3,11 @@
 /**
  * Plugin Name: GB CSS Tooltip
  * Description: Adds a tooltip field to links in the Gutenberg editor.
- * Version: 1.0.1
+ * Version: 1.2.0
  * Author: @cobianzo
  * Author URI: https://github.com/cobianzo
- *
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  *
  * package @gutenberg-tooltip
  */
@@ -61,6 +62,11 @@ class Plugin {
 	 * @return void
 	 */
 	public static function enqueue_additional_block_styles(): void {
+
+		if ( ! is_singular() || is_front_page() ) {
+			return;
+		}
+
 		$asset_file = include plugin_dir_path( __FILE__ ) . 'build/front-style.asset.php';
 
 		wp_enqueue_style(
