@@ -1,0 +1,11 @@
+# Changelog
+
+## [1.2.0]
+- Initial submission for review
+
+## [1.2.1] - YYYY-MM-DD
+### Added
+- Source code for the javascript bundles
+
+### Changed
+- Changed `plugin.php` into `gb-css-tooltip`

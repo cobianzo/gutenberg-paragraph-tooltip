@@ -19,5 +19,10 @@
 	"editor.formatOnSave": false,
 	"[php]": {
 		"editor.formatOnSave": false
-	}
+	},
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+	"phpcs.standard": "./phpcs.xml.dist",
+  "phpcs.executablePath": "./vendor/squizlabs/php_codesniffer/bin/phpcs",
+	"phpcbf.executablePath": "./vendor/squizlabs/php_codesniffer/bin/phpcbf",
+	"phpcbf.standard": "./phpcs.xml.dist"
 }

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Al ejecutar esto, se comprimira el plugin listo para distribucion
+# y su zip de resultado se hara push en la rama de git 'distribution-zip'
+# After executing this, we'll be back in the 'main' branch but the vendor and node_modules
+# will be deleted. You can run 'npm install' and 'composer install' to get them back.
+
 # Configuración de variables
 BRANCH_DISTRIBUTION="distribution"
 BRANCH_MAIN="main"
@@ -22,10 +27,9 @@ EXCLUDE_FILES=(
     "phpunit.xml.dist"
     "playwright.config.ts"
     "schemas"
-    "src"
     "tests"
     "tsconfig.json"
-    ".phpcs.xml.dist"
+    "phpcs.xml.dist"
     ".editorconfig"
     ".prettierrc.js"
     ".eslintrc.js"

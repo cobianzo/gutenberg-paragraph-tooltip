@@ -3,20 +3,19 @@
 /**
  * Plugin Name: GB CSS Tooltip
  * Description: Adds a tooltip field to links in the Gutenberg editor.
- * Version: 1.2.0
+ * Version: 1.2.1
  * Author: @cobianzo
  * Author URI: https://github.com/cobianzo
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * Text Domain: gb-css-tooltip
  *
- * package @gutenberg-tooltip
+ * package @gb-css-tooltip
  */
 
 namespace GutenbergTooltip;
 
 class Plugin {
-
-
 
 	/**
 	 * Call hooks
@@ -79,3 +78,4 @@ class Plugin {
 }
 
 Plugin::init();
+
